@@ -1,6 +1,7 @@
 package com.example.dolgs
 
 
+import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
@@ -25,7 +26,7 @@ class DbManager(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, nul
 
     fun insertDebt(note: Debt) {
         val db = this.writableDatabase
-        db.beginTransaction();
+        db.beginTransaction()
         try {
             val contentValues = ContentValues()
             contentValues.put(COLUMN_DESCRIPTION, note.description)
@@ -34,7 +35,7 @@ class DbManager(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, nul
             contentValues.put(COLUMN_TYPE, note.typeDebt.ordinal)
             contentValues.put(COLUMN_DATE, note.date.time)
             note.id = db.insert(TABLE_NAME, null, contentValues)
-            db.setTransactionSuccessful();
+            db.setTransactionSuccessful()
         } finally {
             db.endTransaction()
             db.close()
@@ -43,12 +44,12 @@ class DbManager(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, nul
 
     fun deleteDebt(position: Long) {
         val db = this.writableDatabase
-        db.beginTransaction();
+        db.beginTransaction()
         try {
             db.delete(TABLE_NAME,
                 COLUMN_ID + " = ?",
                 arrayOf(position.toString()))
-            db.setTransactionSuccessful();
+            db.setTransactionSuccessful()
         } finally {
             db.endTransaction()
             db.close()
@@ -60,6 +61,7 @@ class DbManager(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, nul
     }
 
 
+    @SuppressLint("StaticFieldLeak")
     private inner class RequestAllUsers internal constructor(val getterNotes: GetterDebts?) : AsyncTask<Void, Debt, Void?>() {
         override fun doInBackground(vararg voids: Void): Void? {
             val db = this@DbManager.readableDatabase
