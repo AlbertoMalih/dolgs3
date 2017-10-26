@@ -25,22 +25,34 @@ class DbManager(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, nul
 
     fun insertDebt(note: Debt) {
         val db = this.writableDatabase
-        val contentValues = ContentValues()
-        contentValues.put(COLUMN_DESCRIPTION, note.description)
-        contentValues.put(COLUMN_AGE, note.age)
-        contentValues.put(COLUMN_NAME_PARTNER, note.namePartner)
-        contentValues.put(COLUMN_TYPE, note.typeDebt.ordinal)
-        contentValues.put(COLUMN_DATE, note.date.getTime())
-        note.id = db.insert(TABLE_NAME, null, contentValues)
-        db.close()
+        db.beginTransaction();
+        try {
+            val contentValues = ContentValues()
+            contentValues.put(COLUMN_DESCRIPTION, note.description)
+            contentValues.put(COLUMN_AGE, note.age)
+            contentValues.put(COLUMN_NAME_PARTNER, note.namePartner)
+            contentValues.put(COLUMN_TYPE, note.typeDebt.ordinal)
+            contentValues.put(COLUMN_DATE, note.date.time)
+            note.id = db.insert(TABLE_NAME, null, contentValues)
+            db.setTransactionSuccessful();
+        } finally {
+            db.endTransaction()
+            db.close()
+        }
     }
 
     fun deleteDebt(position: Long) {
         val db = this.writableDatabase
-        db.delete(TABLE_NAME,
+        db.beginTransaction();
+        try {
+            db.delete(TABLE_NAME,
                 COLUMN_ID + " = ?",
                 arrayOf(position.toString()))
-        db.close()
+            db.setTransactionSuccessful();
+        } finally {
+            db.endTransaction()
+            db.close()
+        }
     }
 
     fun installAllNotesInListener(getterNotes:GetterDebts) {
