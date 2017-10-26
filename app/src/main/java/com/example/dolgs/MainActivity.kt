@@ -5,9 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.View
-import android.support.v7.widget.LinearLayoutManager
 import com.example.dolgs.Constants.DEBT_TO_ACTIVITY_CREATE_CODE
 import com.example.dolgs.Constants.START_CREATE_DEBT_ACTIVITY_CODE
 
@@ -27,7 +25,7 @@ class MainActivity : AppCompatActivity(), DbManager.Companion.GetterDebts {
         debts.adapter = SimpleItemRecyclerViewAdapter(this, debtsList)
         dbManager.installAllNotesInListener(this)
 
-        findViewById<View>(R.id.fab).setOnClickListener { view ->
+        findViewById<View>(R.id.fab).setOnClickListener {
             startActivityForResult(Intent(
                     this, CreateDebtActivity::class.java
             ).putExtra(DEBT_TO_ACTIVITY_CREATE_CODE, Debt()), START_CREATE_DEBT_ACTIVITY_CODE)

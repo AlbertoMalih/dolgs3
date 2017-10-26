@@ -3,7 +3,6 @@ package com.example.dolgs
 import android.content.Intent
 import android.support.v7.widget.PopupMenu
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +13,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-class SimpleItemRecyclerViewAdapter(private val containThisActivity: MainActivity, val noteValues: List<Debt>) : RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder>() {
+class SimpleItemRecyclerViewAdapter(private val containThisActivity: MainActivity, private val noteValues: List<Debt>) : RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
@@ -65,6 +64,6 @@ class SimpleItemRecyclerViewAdapter(private val containThisActivity: MainActivit
     }
 
     companion object {
-        val dateFormatter: DateFormat = SimpleDateFormat("yyyy:MM:dd:::HH:mm", Locale.getDefault());
+        val dateFormatter: DateFormat = SimpleDateFormat("yyyy:MM:dd:::HH:mm", Locale.getDefault())
     }
 }

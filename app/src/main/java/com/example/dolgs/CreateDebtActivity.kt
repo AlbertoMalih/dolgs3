@@ -13,7 +13,7 @@ import com.example.dolgs.Constants.DEBT_TO_ACTIVITY_CREATE_CODE
 
 class CreateDebtActivity : AppCompatActivity() {
     lateinit var debt: Debt
-    lateinit var typesDebts: AppCompatSpinner
+    private lateinit var typesDebts: AppCompatSpinner
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,7 +24,7 @@ class CreateDebtActivity : AppCompatActivity() {
     private fun initial() {
         debt = intent.getParcelableExtra(DEBT_TO_ACTIVITY_CREATE_CODE)
         typesDebts = findViewById(R.id.types_current_debt)
-        typesDebts.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, resources.getStringArray(R.array.who_must_strs));
+        typesDebts.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, resources.getStringArray(R.array.who_must_strs))
         typesDebts.setSelection(debt.typeDebt.ordinal)
         typesDebts.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             @Override
@@ -35,7 +35,7 @@ class CreateDebtActivity : AppCompatActivity() {
             @Override
             override fun onNothingSelected(adapterView: AdapterView<*>) {
             }
-        };
+        }
     }
 
     fun onClickForTaskButtons(view: View) {

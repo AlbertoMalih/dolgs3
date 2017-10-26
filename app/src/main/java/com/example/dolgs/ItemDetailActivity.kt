@@ -5,11 +5,11 @@ import android.support.v7.app.AppCompatActivity
 import android.widget.TextView
 
 class ItemDetailActivity : AppCompatActivity() {
-    lateinit var output_date: TextView
-    lateinit var output_description: TextView
-    lateinit var output_type: TextView
-    lateinit var output_age: TextView
-    lateinit var output_here_name: TextView
+    private lateinit var output_date: TextView
+    private lateinit var output_description: TextView
+    private lateinit var output_type: TextView
+    private lateinit var output_age: TextView
+    private lateinit var output_here_name: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
