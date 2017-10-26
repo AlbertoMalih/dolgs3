@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">debts</string>
+    <string name="description_str">description</string>
+    <string name="name_partner_str">name partner</string>
+    <string name="age_str">age</string>
+    <string name="create_str">create</string>
+
+    <array name="who_must_strs">
+        <item>Here must</item>
+        <item>I must</item>
+    </array>
+</resources>

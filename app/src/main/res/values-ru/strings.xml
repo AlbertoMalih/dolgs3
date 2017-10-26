@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">долги</string>
+    <string name="description_str">описание</string>
+    <string name="name_partner_str">имя партнера</string>
+    <string name="age_str">число</string>
+    <string name="create_str">создать</string>
+
+    <array name="who_must_strs">
+        <item>Он должен</item>
+        <item>Я должен</item>
+    </array>
+</resources>
